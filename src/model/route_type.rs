@@ -17,10 +17,13 @@ pub struct RouteTypesResponse {
     pub status: super::Status,
 }
 
+pub fn route_types_url() -> Url {
+    Url::parse("https://timetableapi.ptv.vic.gov.au/v3/route_types").unwrap()
+}
+
 impl Client {
     pub async fn get_route_types(&mut self) -> Result<RouteTypesResponse, reqwest::Error> {
-        self.get(Url::parse("https://timetableapi.ptv.vic.gov.au/v3/route_types").unwrap())
-            .await
+        self.get(route_types_url()).await
     }
 }
 
